@@ -6,8 +6,13 @@ type GenericInterface interface {
 	//~int 代表int类型及派生类型
 }
 
+// GenericMap 定义泛型map
+type GenericMap[G GenericInterface] map[string]G
+
 // GenericStruct 定义泛型结构体
 type GenericStruct[G GenericInterface] struct {
+	//使用泛型map
+	genericMap GenericMap[G]
 }
 
 // GenericFunction 定义泛型函数

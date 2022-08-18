@@ -1,9 +1,20 @@
 package _1_difinition
 
+const (
+	String = "string"
+	Int    = "int"
+	Float  = "float"
+	Bool   = "bool"
+	Byte   = "byte"
+	Bytes  = "[]byte"
+)
+
 // GenericInterface 定义泛型
 type GenericInterface interface {
 	//int 代表int类型
 	//~int 代表int类型及派生类型
+	int | string | []byte
+	Type() string
 }
 
 // GenericMap 定义泛型map
@@ -19,7 +30,13 @@ type GenericStruct[G GenericInterface] struct {
 type GenericFunction[G GenericInterface] func(G)
 
 // NewGenericStruct 创建泛型结构体
-func NewGenericStruct[G GenericInterface]() GenericStruct[G] {
+func NewGenericStruct[G GenericInterface](v G) GenericStruct[G] {
+	switch v.Type() {
+	case String:
+	case Int:
+		//...
+	}
+
 	return GenericStruct[G]{}
 }
 
